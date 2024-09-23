@@ -27,12 +27,12 @@ Make sure to sync your project to download and install the SDK.
 ### Import SDK
 Firstly import the Activity using following code:
 ```kotlin
-import com.victoria_id.check.id.sdk.MainActivity
+import com.victoria_id.check.id.sdk.Victoria_ID_Check_SDK_Activity
 ```
 ### Start SDK
 To start the SDK activity from your application, use the following code:
 ```kotlin
-        val sdkIntent = Intent(applicationContext, MainActivity::class.java)
+        val sdkIntent = Intent(applicationContext, Victoria_ID_Check_SDK_Activity::class.java)
         sdkIntent.putExtra("primary_color", "#FF6200EE")
         sdkIntent.putExtra("secondary_color", "#FF03DAC5")
         sdkIntent.putExtra("api_uri", "https://yourapi.com/data?token=your_token")

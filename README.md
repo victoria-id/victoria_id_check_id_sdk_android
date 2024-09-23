@@ -35,7 +35,7 @@ To start the SDK activity from your application, use the following code:
         val sdkIntent = Intent(applicationContext, Victoria_ID_Check_SDK_Activity::class.java)
         sdkIntent.putExtra("primary_color", "#FF6200EE")
         sdkIntent.putExtra("secondary_color", "#FF03DAC5")
-        sdkIntent.putExtra("api_uri", "https://example.api.victoria-id.com/screenee/<SCREENE_ID>/check/identity/travel_document/text_chip_certificate/?domain=example.victoria-id.com&token=<TOKEN>")
+        sdkIntent.putExtra("api_uri", "https://api.victoria-id.com/screenee/:screenee_id/check/identity/travel_document/text_chip_certificate/?domain=example.victoria-id.com&token=<token>")
 
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->

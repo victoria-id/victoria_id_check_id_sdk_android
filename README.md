@@ -33,9 +33,9 @@ import com.victoria_id.check.id.sdk.MainActivity
 To start the SDK activity from your application, use the following code:
 ```kotlin
         val sdkIntent = Intent(applicationContext, MainActivity::class.java)
-        intent.putExtra("primary_color", "#FF6200EE")
-        intent.putExtra("secondary_color", "#FF03DAC5")
-        intent.putExtra("api_uri", "https://yourapi.com/data?token=your_token")
+        sdkIntent.putExtra("primary_color", "#FF6200EE")
+        sdkIntent.putExtra("secondary_color", "#FF03DAC5")
+        sdkIntent.putExtra("api_uri", "https://yourapi.com/data?token=your_token")
 
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->

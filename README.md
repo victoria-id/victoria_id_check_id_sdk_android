@@ -33,8 +33,11 @@ import com.victoria_id.check.id.sdk.Victoria_ID_Check_SDK_Activity
 To start the SDK activity from your application, use the following code:
 ```kotlin
         val sdkIntent = Intent(applicationContext, Victoria_ID_Check_SDK_Activity::class.java)
-        sdkIntent.putExtra("primary_color", "#FF6200EE")
-        sdkIntent.putExtra("secondary_color", "#FF03DAC5")
+        sdkIntent.putExtra("color_primary", "#f108a7")
+        sdkIntent.putExtra("color_secondary", "#dfbdfe")
+        sdkIntent.putExtra("color_tertiary", "#13f3cb")
+        sdkIntent.putExtra("color_font", "#0b0c5d")
+        sdkIntent.putExtra("color_background", "#eedad6")
         sdkIntent.putExtra("api_uri", "https://api.victoria-id.com/screenee/:screenee_id/check/identity/travel_document/text_chip_certificate/?domain=example.victoria-id.com&token=<token>")
 
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -47,6 +50,5 @@ To start the SDK activity from your application, use the following code:
 
         resultLauncher.launch(sdkIntent)
 ```
-- `primary_color`: Set the primary color of the SDK’s UI.
-- `secondary_color`: Set the secondary color for accents.
+- `color_<variant>`: Set the variant color of the SDK’s UI.
 - `api_uri`: Provide the API URL (with token) for data retrieval. If omitted, the SDK will display the QR-code scanner step, which can still be themed using the passed color values.

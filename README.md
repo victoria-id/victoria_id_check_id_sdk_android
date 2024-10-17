@@ -43,8 +43,8 @@ To start the SDK activity from your application, use the following code:
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
                 if(result.resultCode == Activity.RESULT_OK) {
-                    val data = result.data
-                    // Do something with data
+                    val code = API.check.result.code
+                    val data = API.check.result.data
                 }
         }
 
@@ -52,3 +52,16 @@ To start the SDK activity from your application, use the following code:
 ```
 - `color_<variant>`: Set the variant color of the SDK’s UI.
 - `api_uri`: Provide the API URL (with token) for data retrieval. If omitted, the SDK will display the QR-code scanner step, which can still be themed using the passed color values.
+
+SDK flow statuses (API.check.result.code):
+- "success"
+- "exception"
+- "api_error.data"
+- "api_error.link_invalid"
+- "api_error.exception"
+- "feature_not_found.camera"
+- "feature_not_found.nfc"
+
+SDK flow result (API.check.result.data):
+- json data returned from the api, if the call was successful,
+- exception message, if there was an exception

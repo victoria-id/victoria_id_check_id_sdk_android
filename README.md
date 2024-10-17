@@ -32,7 +32,7 @@ import com.victoria_id.check.id.sdk.Victoria_ID_Check_SDK_Activity
 ### Start SDK
 To start the SDK activity from your application, use the following code:
 ```kotlin
-        val sdkIntent = Intent(applicationContext, Victoria_ID_Check_SDK_Activity::class.java)
+        val sdkIntent = Intent(applicationContext, Victoria_ID_Check_ID_SDK_Activity::class.java)
         sdkIntent.putExtra("color_primary", "#f108a7")
         sdkIntent.putExtra("color_secondary", "#dfbdfe")
         sdkIntent.putExtra("color_tertiary", "#13f3cb")

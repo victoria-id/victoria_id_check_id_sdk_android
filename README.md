@@ -4,7 +4,7 @@
 This SDK is designed to launch an activity that walks the user through multiple ID-check steps. After completion, the SDK will return meta-data to the calling application, indicating the success or failure of the operation. No sensitive information will be returned directly by the SDK.
 
 ## Permissions
-Permisions required by the SDK:
+Permissions required by the SDK:
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.CAMERA" />

@@ -83,7 +83,7 @@ To start the SDK activity from the host application (your application), use the 
             result ->
                 if(result.resultCode == Activity.RESULT_OK) {
                     val strID_Check_Result_Code = ID_Check_Result.code
-                    val strID_Data = ID_Check_Result.data
+                    val strID_Data_JSON = ID_Check_Result.data
                 }
         }
 

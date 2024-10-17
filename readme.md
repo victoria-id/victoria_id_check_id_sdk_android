@@ -15,7 +15,8 @@
 
 ## Introduction
 
-This SDK is designed to launch an activity that walks the user through multiple ID-check steps. After completion, the SDK will return meta-data to the calling application, indicating the success or failure of the operation. No sensitive information will be returned directly by the SDK.
+This SDK contains the ID check from Victoria ID. It can be embedded in your application, which we will refer to as the "host application".
+The SDK is designed to launch an activity that walks the user through multiple steps of the ID check. After completion, the SDK will return metadata to the host application, indicating the success or failure of the operation.
 
 
 ## Permissions

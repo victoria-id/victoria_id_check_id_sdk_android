@@ -100,7 +100,7 @@ Intent values:
 
 SDK return codes (`ID_Check_Result.code`):
 
-* "feature_not_found.camera": The device does not have a camera needed to scan a QR code. Only applicable when `api_uri` is omitted.
+* "feature_not_found.camera": The device does not have a camera needed to scan a QR code and/or ID document.
 * "feature_not_found.nfc": The device does not have NFC capability.
 
 * "exception.generic": Generic exception.

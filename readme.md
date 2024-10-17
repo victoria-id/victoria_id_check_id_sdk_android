@@ -105,9 +105,8 @@ SDK return codes (`ID_Check_Result.code`):
 * "feature_not_found.nfc": The device does not have NFC capability.
 
 * "exception.generic": Generic exception.
-* "exception.api.url.invalid": The Victoria Connect API did not accept the API URL to be able to start the process.
+* "exception.api.url": The Victoria Connect API did not accept the API URL to be able to start the process.
 * "exception.api.data": The Victoria Connect API did not accept the data payload to finish the process.
-* "exception.api": The Victoria Connect API returned an exception.
 
 * "success": ID check was successfully performed.
 

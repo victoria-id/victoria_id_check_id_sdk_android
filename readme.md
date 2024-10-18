@@ -7,7 +7,7 @@
    2. [Introduction](#introduction)
    3. [Permissions](#permissions)
    4. [Installation](#installation)
-      1. [Add the SDK to your project](#add-the-sdk-to-your-project)
+      1. [Adding the SDK to your project](#adding-the-sdk-to-your-project)
    5. [Usage](#usage)
       1. [Importing the SDK](#importing-the-sdk)
       2. [Starting the SDK](#starting-the-sdk)
@@ -24,23 +24,27 @@ The SDK is designed to launch an activity that walks the user through multiple s
 Permissions required by the SDK:
 
 ```xml
+
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.NFC" />
 <uses-permission android:name="android.permission.VIBRATE" />
+
 ```
 
 
 ## Installation
 
-### Add the SDK to your project
+### Adding the SDK to your project
 
 To integrate the SDK into your Android project, add the following dependency to your `build.gradle` file:
 
 ```gradle
+
 dependencies {
     implementation 'import com.victoria_id.check.id.sdk:1.5.0'
 }
+
 ```
 
 Make sure to synchronize your project to download and install the SDK.
@@ -53,65 +57,87 @@ Make sure to synchronize your project to download and install the SDK.
 Firstly import the Activity using following code:
 
 ```kotlin
+
 import com.victoria_id.check.id.sdk.Victoria_ID_Check_ID_SDK_Activity
+
 ```
 
 
 ### Starting the SDK
 
-To start the SDK activity from the host application (your application), use the following code:
+To start the SDK activity from the host application (your application), use the code below.
+For your convenience, we merged the code and this part of the documentation together so your codebase can benefit from code comments.
 
 ```kotlin
-        // Create a new intent to launch the ID check SDK.
-        val iID_Check_SDK = Intent(applicationContext, Victoria_ID_Check_ID_SDK_Activity::class.java)
 
-        // These colors should match the colors as they are set in Portal settings of the screening portal.
-        iID_Check_SDK.putExtra("color_primary", "#f108a7")
-        iID_Check_SDK.putExtra("color_secondary", "#dfbdfe")
-        iID_Check_SDK.putExtra("color_tertiary", "#13f3cb")
+// Create a new intent to launch the ID check SDK.
+val iID_Check_SDK = Intent(applicationContext, Victoria_ID_Check_ID_SDK_Activity::class.java)
 
-        iID_Check_SDK.putExtra("color_font", "#0b0c5d")
-        iID_Check_SDK.putExtra("color_background", "#eedad6")
 
-        /*
-         Call `GET screenee/:screenee_id/check/identity/travel_document/text_chip_certificate/token/` from your API
-          as described in the Victoria Connect API documentation at https://doc.api.victoria-id.com/#1f481ddb-3547-4c17-8ec4-e47dfd47fb71
-          to get the temporary token required to start and finish the process by sending the ID data back to the Victoria Connect API.
-        */
-        iID_Check_SDK.putExtra("api_uri", "https://api.victoria-id.com/screenee/:screenee_id/check/identity/travel_document/text_chip_certificate/?domain=example.victoria-id.com&token=<token>")
+// Set the initial theme colors of the UI.
+// These colors should match the colors as they are set in the Portal settings of the screening portal.
+// When the SDK reaches step 3 of the user flow, it has made contact with the portal and fetched updated colors.
+iID_Check_SDK.putExtra("color_primary", "#f108a7")
+iID_Check_SDK.putExtra("color_secondary", "#dfbdfe")
+iID_Check_SDK.putExtra("color_tertiary", "#13f3cb")
 
-        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result ->
-                if(result.resultCode == Activity.RESULT_OK) {
-                    val strID_Check_Result_Code = ID_Check_Result.code
+iID_Check_SDK.putExtra("color_font", "#0b0c5d")
+iID_Check_SDK.putExtra("color_background", "#eedad6")
+
+
+/*
+ Provide the API URL (with token). If omitted, the SDK will display the QR code scanner step,
+  requiring the user to scan the QR code from the portal on a desktop computer.
+
+ Your API is expected to call `GET screenee/:screenee_id/check/identity/travel_document/text_chip_certificate/token/`
+  as described in the Victoria Connect API documentation at https://doc.api.victoria-id.com/#1f481ddb-3547-4c17-8ec4-e47dfd47fb71
+  to get the temporary token required for the API to start and finish the process.
+*/
+iID_Check_SDK.putExtra("api_uri", "https://api.victoria-id.com/screenee/:screenee_id/check/identity/travel_document/text_chip_certificate/?domain=example.victoria-id.com&token=<token>")
+
+
+// Prepare a result launcher to process the result of the ID check SDK.
+val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    result ->
+        if(result.resultCode == Activity.RESULT_OK) {
+
+            // The result code of the ID check will be stored in `ID_Check_Result.code`.
+            val strID_Check_Result_Code = ID_Check_Result.code
+
+            // The result code can be..
+            when (strID_Check_Result_Code) {
+
+                "feature_not_found.camera" -> {
+                    // The device does not have a camera needed to scan a QR code and/or ID document.
+                }
+
+                "feature_not_found.nfc" -> {
+                    // The device does not have NFC capability.
+                }
+
+                "exception.api.url" -> {
+                    // The Victoria Connect API did not accept the API URL to be able to start the process.
+                }
+
+                "exception.api.data" -> {
+                    // The Victoria Connect API did not accept the data payload to finish the process.
+                }
+
+                "exception.generic" -> {
+                    // Generic exception.
+                    val strException_Description = ID_Check_Result.data
+                }
+
+                "success" -> {
+                    // ID check was completed successfully.
                     val strID_Data_JSON = ID_Check_Result.data
                 }
+            }
         }
+}
 
-        resultLauncher.launch(iID_Check_SDK)
+
+// Launch the main ID check SDK activity.
+resultLauncher.launch(iID_Check_SDK)
+
 ```
-
-
-Intent values:
-
-* `color_<variant>`: Controls the initial theme colors of the SDK’s UI. Will switch to using the colors as defined in the Portal settings of the screening portal when the SDK reaches step 3 of the user flow.
-
-* `api_uri`: Provide the API URL (with token). If omitted, the SDK will display the QR code scanner step.
-
-
-SDK return codes (`ID_Check_Result.code`):
-
-* "feature_not_found.camera": The device does not have a camera needed to scan a QR code and/or ID document.
-* "feature_not_found.nfc": The device does not have NFC capability.
-
-* "exception.generic": Generic exception.
-* "exception.api.url": The Victoria Connect API did not accept the API URL to be able to start the process.
-* "exception.api.data": The Victoria Connect API did not accept the data payload to finish the process.
-
-* "success": ID check was successfully performed.
-
-
-SDK return data (`ID_Check_Result.data`):
-
-* JSON data returned from the API, if the call was successful.
-* Exception message, if there was an exception.

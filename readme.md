@@ -5,10 +5,10 @@
 1. [Victoria ID - ID check - SDK - Documentation - Android](#victoria-id---id-check---sdk---documentation---android)
    1. [Table of contents](#table-of-contents)
    2. [Introduction](#introduction)
-   3. [Permissions](#permissions)
-   4. [Installation](#installation)
-      1. [Adding the SDK to your project](#adding-the-sdk-to-your-project)
-   5. [Usage](#usage)
+   3. [Adding the SDK to your project](#adding-the-sdk-to-your-project)
+      1. [Gradle](#gradle)
+      2. [Permissions](#permissions)
+   4. [Usage](#usage)
       1. [Importing the SDK](#importing-the-sdk)
       2. [Starting the SDK](#starting-the-sdk)
 
@@ -19,23 +19,9 @@ This SDK contains the ID check from Victoria ID. It can be embedded in your appl
 The SDK is designed to launch an activity that walks the user through multiple steps of the ID check. After completion, the SDK will return metadata to the host application, indicating the success or failure of the operation.
 
 
-## Permissions
+## Adding the SDK to your project
 
-Add these permission to the `AndroidManifest.xml` file of your Android project. They are required by the SDK:
-
-```xml
-
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.NFC" />
-<uses-permission android:name="android.permission.VIBRATE" />
-
-```
-
-
-## Installation
-
-### Adding the SDK to your project
+### Gradle
 
 To integrate the SDK into your Android project, add the following dependency to your `build.gradle` file:
 
@@ -48,6 +34,20 @@ dependencies {
 ```
 
 Make sure to synchronize your project to download and install the SDK.
+
+
+### Permissions
+
+Add these permission to the `AndroidManifest.xml` file of your Android project. They are required by the SDK:
+
+```xml
+
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.NFC" />
+<uses-permission android:name="android.permission.VIBRATE" />
+
+```
 
 
 ## Usage

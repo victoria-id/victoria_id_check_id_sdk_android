@@ -7,7 +7,6 @@
    2. [Introduction](#introduction)
    3. [Adding the SDK to your project](#adding-the-sdk-to-your-project)
       1. [Gradle](#gradle)
-      2. [Permissions](#permissions)
    4. [Usage](#usage)
       1. [Importing the SDK](#importing-the-sdk)
       2. [Starting the SDK](#starting-the-sdk)
@@ -34,20 +33,6 @@ dependencies {
 ```
 
 Make sure to synchronize your project to download and install the SDK.
-
-
-### Permissions
-
-Add these permission to the `AndroidManifest.xml` file of your Android project. They are required by the SDK:
-
-```xml
-
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.NFC" />
-<uses-permission android:name="android.permission.VIBRATE" />
-
-```
 
 
 ## Usage

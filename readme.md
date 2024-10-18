@@ -21,7 +21,7 @@ The SDK is designed to launch an activity that walks the user through multiple s
 
 ## Permissions
 
-Permissions required by the SDK:
+Add these permission to the `AndroidManifest.xml` file of your Android project. They are required by the SDK:
 
 ```xml
 
@@ -54,7 +54,7 @@ Make sure to synchronize your project to download and install the SDK.
 
 ### Importing the SDK
 
-Firstly import the Activity using following code:
+First import the Activity using:
 
 ```kotlin
 
@@ -77,12 +77,12 @@ val iID_Check_SDK = Intent(applicationContext, Victoria_ID_Check_ID_SDK_Activity
 // Set the initial theme colors of the UI.
 // These colors should match the colors as they are set in the Portal settings of the screening portal.
 // When the SDK reaches step 3 of the user flow, it has made contact with the portal and fetched updated colors.
-iID_Check_SDK.putExtra("color_primary", "#f108a7")
-iID_Check_SDK.putExtra("color_secondary", "#dfbdfe")
-iID_Check_SDK.putExtra("color_tertiary", "#13f3cb")
+iID_Check_SDK.putExtra("color_primary", "#f108a7")     // The primary color used for call-to-action elements.
+iID_Check_SDK.putExtra("color_secondary", "#dfbdfe")   // Reserved.
+iID_Check_SDK.putExtra("color_tertiary", "#13f3cb")    // Reserved.
 
-iID_Check_SDK.putExtra("color_font", "#0b0c5d")
-iID_Check_SDK.putExtra("color_background", "#eedad6")
+iID_Check_SDK.putExtra("color_font", "#0b0c5d")        // Reserved.
+iID_Check_SDK.putExtra("color_background", "#eedad6")  // Reserved.
 
 
 /*
@@ -108,28 +108,39 @@ val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActi
             when (strID_Check_Result_Code) {
 
                 "feature_not_found.camera" -> {
-                    // The device does not have a camera needed to scan a QR code and/or ID document.
+                    Log.w("ID check", "The device does not have a camera needed to scan a QR code and/or ID document.")
                 }
 
                 "feature_not_found.nfc" -> {
-                    // The device does not have NFC capability.
+                    Log.w("ID check", "The device does not have NFC capability.")
                 }
 
                 "exception.api.url" -> {
-                    // The Victoria Connect API did not accept the API URL to be able to start the process.
+                    Log.w("ID check", "The Victoria Connect API did not accept the API URL to be able to start the process.")
                 }
 
                 "exception.api.data" -> {
-                    // The Victoria Connect API did not accept the data payload to finish the process.
+                    Log.w("ID check", "The Victoria Connect API did not accept the data payload to finish the process.")
                 }
 
                 "exception.generic" -> {
-                    // Generic exception.
+                    Log.w("ID check", "Generic exception:")
+
                     val strException_Description = ID_Check_Result.data
+                    Log.w("ID check", strException_Description)
                 }
 
                 "success" -> {
-                    // ID check was completed successfully.
+                    Log.w("ID check", "ID check was completed successfully.")
+
+                    /*
+                     Although the SDK returns the ID data from the API call for your convenience,
+                      it could have been altered using a man-in-the-middle attack.
+                     Do not send this information to your own API. It is not authoritative.
+
+                     Your API is expected to fetch the information directly from the Victoria Connect API using call
+                      `GET group/:group_id/screening/:screening_id/screenee/:screenee_id/`.
+                    */
                     val strID_Data_JSON = ID_Check_Result.data
                 }
             }

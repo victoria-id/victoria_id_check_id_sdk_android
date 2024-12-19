@@ -66,8 +66,8 @@ iID_Check_SDK.putExtra("color_primary", "#f108a7")     // The primary color used
 iID_Check_SDK.putExtra("color_secondary", "#dfbdfe")   // Reserved.
 iID_Check_SDK.putExtra("color_tertiary", "#13f3cb")    // Reserved.
 
-iID_Check_SDK.putExtra("color_font", "#0b0c5d")        // Reserved.
-iID_Check_SDK.putExtra("color_background", "#eedad6")  // Reserved.
+iID_Check_SDK.putExtra("font_color", "#0b0c5d")        // Reserved.
+iID_Check_SDK.putExtra("background_color", "#eedad6")  // Reserved.
 
 
 /*

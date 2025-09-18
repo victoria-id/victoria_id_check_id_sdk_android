@@ -27,7 +27,7 @@ To integrate the SDK into your Android project, add the following dependency to 
 ```gradle
 
 dependencies {
-    implementation 'import com.victoria-id:check.id.sdk:1.5.0'
+    implementation 'import com.victoria-id:check.id.sdk:1.11.0'
 }
 
 ```

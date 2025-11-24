@@ -1,8 +1,8 @@
-# Victoria ID - ID check - SDK - Documentation - Android
+# Victoria-ID - ID check - SDK - Documentation - Android
 
 ## Table of contents
 
-1. [Victoria ID - ID check - SDK - Documentation - Android](#victoria-id---id-check---sdk---documentation---android)
+1. [Victoria-ID - ID check - SDK - Documentation - Android](#victoria-id---id-check---sdk---documentation---android)
    1. [Table of contents](#table-of-contents)
    2. [Introduction](#introduction)
    3. [Adding the SDK to your project](#adding-the-sdk-to-your-project)
@@ -14,7 +14,7 @@
 
 ## Introduction
 
-This SDK contains the ID check from Victoria ID. It can be embedded in your application, which we will refer to as the "host application".
+This SDK contains the ID check from Victoria-ID. It can be embedded in your application, which we will refer to as the "host application".
 The SDK is designed to launch an activity that walks the user through multiple steps of the ID check. After completion, the SDK will return metadata to the host application, indicating the success or failure of the operation.
 
 

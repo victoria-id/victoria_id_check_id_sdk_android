@@ -114,18 +114,21 @@ val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActi
                     Log.w("ID check", strException_Description)
                 }
 
+                "cancel" -> {
+                    Log.w("ID check", "User canceled ID check flow.")
+                }
+
+                "data.share.decline" -> {
+                    Log.w("ID check", "User declined to share data.")
+                }
+
                 "success" -> {
                     Log.w("ID check", "ID check was completed successfully.")
 
                     /*
-                     Although the SDK returns the ID data from the API call for your convenience,
-                      it could have been altered using a man-in-the-middle attack.
-                     Do not send this information to your own API. It is not authoritative.
-
-                     Your API is expected to fetch the information directly from the Victoria Connect API using call
+                     Your API is expected to fetch the information directly from the Victoria Connect API using:
                       `GET group/:group_id/screening/:screening_id/screenee/:screenee_id/`.
                     */
-                    val strID_Data_JSON = ID_Check_Result.data
                 }
             }
         }

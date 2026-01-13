@@ -85,44 +85,41 @@ val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActi
     result ->
         if(result.resultCode == Activity.RESULT_OK) {
 
-            // The result code of the ID check will be stored in `ID_Check_Result.code`.
-            val strID_Check_Result_Code = ID_Check_Result.code
-
             // The result code can be..
-            when (strID_Check_Result_Code) {
+            when (ID_Check_Result.code) {
 
-                "feature_not_found.camera" -> {
+                ID_Check_Result_Code.feature_not_found_camera -> {
                     Log.w("ID check", "The device does not have a camera needed to scan a QR code and/or ID document.")
                 }
 
-                "feature_not_found.nfc" -> {
+                ID_Check_Result_Code.feature_not_found_nfc -> {
                     Log.w("ID check", "The device does not have NFC capability.")
                 }
 
-                "exception.api.url" -> {
+                ID_Check_Result_Code.exception_api_url -> {
                     Log.w("ID check", "The Victoria Connect API did not accept the API URL to be able to start the process.")
                 }
 
-                "exception.api.data" -> {
+                ID_Check_Result_Code.exception_api_data -> {
                     Log.w("ID check", "The Victoria Connect API did not accept the data payload to finish the process.")
                 }
 
-                "exception.generic" -> {
+                ID_Check_Result_Code.exception_generic -> {
                     Log.w("ID check", "Generic exception:")
 
                     val strException_Description = ID_Check_Result.data
                     Log.w("ID check", strException_Description)
                 }
 
-                "cancel" -> {
+                ID_Check_Result_Code.cancel -> {
                     Log.w("ID check", "User canceled ID check flow.")
                 }
 
-                "data.share.decline" -> {
+                ID_Check_Result_Code.data_share_decline -> {
                     Log.w("ID check", "User declined to share data.")
                 }
 
-                "success" -> {
+                ID_Check_Result_Code.success -> {
                     Log.w("ID check", "ID check was completed successfully.")
 
                     /*

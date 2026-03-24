@@ -103,7 +103,7 @@
     <dependency>
       <groupId>com.iproov.sdk</groupId>
       <artifactId>iproov</artifactId>
-      <version>11.1.1</version>
+      <version>11.1.0</version>
     </dependency>
     <dependency>
       <groupId>androidx.databinding</groupId>

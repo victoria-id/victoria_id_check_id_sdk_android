@@ -20,19 +20,45 @@ The SDK is designed to launch an activity that walks the user through multiple s
 
 ## Adding the SDK to your project
 
-### Gradle
+### 1. Add the Maven repository
 
-To integrate the SDK into your Android project, add the following dependency to your `build.gradle` file:
+Add the Victoria-ID Maven repository to your project. You can do this either in your root `build.gradle`:
 
 ```gradle
-
-dependencies {
-    implementation 'import com.victoria-id:check.id.sdk:1.11.0'
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://raw.githubusercontent.com/victoria-id/victoria_id_check_id_sdk_android/master/maven/' }
+    }
 }
-
 ```
 
-Make sure to synchronize your project to download and install the SDK.
+Or, if your project uses `dependencyResolutionManagement`, add it to your `settings.gradle` instead:
+
+```gradle
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://raw.githubusercontent.com/victoria-id/victoria_id_check_id_sdk_android/master/maven/' }
+    }
+}
+```
+
+### 2. Add the dependency
+
+In your app module's `build.gradle`, add the SDK dependency:
+
+```gradle
+dependencies {
+    implementation 'com.victoria-id:victoria-id-check-id-sdk-android:1.14.0'
+}
+```
+
+### 3. Build your project
+
+Sync and build your project to download and install the SDK.
 
 
 ## Usage

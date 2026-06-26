@@ -2,14 +2,16 @@
 
 ## Table of contents
 
-1. [Victoria-ID - ID check - SDK - Documentation - Android](#victoria-id---id-check---sdk---documentation---android)
-   1. [Table of contents](#table-of-contents)
-   2. [Introduction](#introduction)
-   3. [Adding the SDK to your project](#adding-the-sdk-to-your-project)
-      1. [Gradle](#gradle)
-   4. [Usage](#usage)
-      1. [Importing the SDK](#importing-the-sdk)
-      2. [Starting the SDK](#starting-the-sdk)
+- [Victoria-ID - ID check - SDK - Documentation - Android](#victoria-id---id-check---sdk---documentation---android)
+  - [Table of contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Adding the SDK to your project](#adding-the-sdk-to-your-project)
+    - [1. Add the Maven repository](#1-add-the-maven-repository)
+    - [2. Add the dependency](#2-add-the-dependency)
+    - [3. Build your project](#3-build-your-project)
+  - [Usage](#usage)
+    - [Importing the SDK](#importing-the-sdk)
+    - [Starting the SDK](#starting-the-sdk)
 
 
 ## Introduction
@@ -69,7 +71,9 @@ First import the Activity using:
 
 ```kotlin
 
-import com.victoria_id.check.id.sdk.Victoria_ID_Check_ID_SDK_Activity
+import com.victoria_id.check.id.sdk.core.Victoria_ID_Check_ID_SDK_Activity
+import com.victoria_id.check.id.sdk.core.ID_Check_Result
+import com.victoria_id.check.id.sdk.core.ID_Check_Result_Code
 
 ```
 

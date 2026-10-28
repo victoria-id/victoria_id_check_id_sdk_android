@@ -8,7 +8,8 @@
   - [Adding the SDK to your project](#adding-the-sdk-to-your-project)
     - [1. Add the Maven repository](#1-add-the-maven-repository)
     - [2. Add the dependency](#2-add-the-dependency)
-    - [3. Build your project](#3-build-your-project)
+    - [3. Required packaging configuration](#3-required-packaging-configuration)
+    - [4. Build your project](#4-build-your-project)
   - [Usage](#usage)
     - [Importing the SDK](#importing-the-sdk)
     - [Starting the SDK](#starting-the-sdk)
@@ -54,11 +55,35 @@ In your app module's `build.gradle`, add the SDK dependency:
 
 ```gradle
 dependencies {
-    implementation 'com.victoria-id:victoria-id-check-id-sdk-android:1.14.0'
+    implementation 'com.victoria-id:victoria-id-check-id-sdk-android:1.16.1'
 }
 ```
 
-### 3. Build your project
+### 3. Required packaging configuration
+
+The SDK depends on jMRTD, which brings in BouncyCastle 1.85. Its `bcprov`, `bcpkix` and `bcutil` artifacts each contain a `META-INF/LICENSE.md`, and the Android Gradle Plugin has no default rule for `.md` license files, so your build fails while merging Java resources. Add this to the `android { }` block of your app module's `build.gradle`:
+
+```gradle
+packaging {
+    resources {
+        excludes += ['META-INF/LICENSE.md', 'META-INF/NOTICE.md']
+    }
+}
+```
+
+Or, if your app module uses the Kotlin DSL (`build.gradle.kts`):
+
+```kotlin
+packaging {
+    resources {
+        excludes += setOf("META-INF/LICENSE.md", "META-INF/NOTICE.md")
+    }
+}
+```
+
+These are license texts with no runtime meaning. Many projects already carry this block for other libraries, in which case nothing needs to change. Required from SDK version 1.16.1 onwards.
+
+### 4. Build your project
 
 Sync and build your project to download and install the SDK.
 

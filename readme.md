@@ -54,7 +54,7 @@ In your app module's `build.gradle`, add the SDK dependency:
 
 ```gradle
 dependencies {
-    implementation 'com.victoria-id:victoria-id-check-id-sdk-android:1.14.0'
+    implementation 'com.victoria-id:victoria-id-check-id-sdk-android:1.16.1'
 }
 ```
 
